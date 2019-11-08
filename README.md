@@ -40,7 +40,7 @@ const reader = new BinaryReader(buffer);
 const result = reader.readString();
 ```
 
-### Suported types
+### Supported types
 - string (set a two-byte prefix to know the size of the string.)
 - short
 - int
