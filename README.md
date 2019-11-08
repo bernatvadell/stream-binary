@@ -1,4 +1,4 @@
-# Stream Binary for JavaScript
+# Stream Binary for JavaScript/TypeScript
 
 ## Overview
 It is a library designed to optimize the size of the messages we send over the network.
@@ -40,8 +40,17 @@ const reader = new BinaryReader(buffer);
 const result = reader.readString();
 ```
 
-### Suported types
+### Supported types
 - string (set a two-byte prefix to know the size of the string.)
 - short
 - int
 - byte
+
+### Next support types
+- long
+- decimal
+- date
+- time
+- ushort
+- uint
+- ulong
