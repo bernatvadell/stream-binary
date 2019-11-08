@@ -1,4 +1,4 @@
-# Stream Binary for JavaScript
+# Stream Binary for JavaScript/TypeScript
 
 ## Overview
 It is a library designed to optimize the size of the messages we send over the network.
