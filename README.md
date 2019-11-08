@@ -8,6 +8,16 @@ The library is separated into two main classes, one for reading and another for 
 
 The best way to teach how it is used is with an example, so let's go.
 
+### Installing in your project...
+npm:
+```
+npm install stream-binary
+```
+yarn:
+```
+yarn add stream-binary
+```
+
 ### BinaryWriter example
 ```ts
 // Initialize BinaryWritter
