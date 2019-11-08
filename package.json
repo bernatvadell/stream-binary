@@ -1,6 +1,6 @@
 {
   "name": "stream-binary",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "repository": "https://github.com/bernatvadell/stream-binary.git",
   "author": "Bernat Vadell <bvadell@feimsoft.com>",
@@ -8,7 +8,7 @@
   "scripts": {
     "build": "rimraf dist/ && tsc",
     "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
-    "publish": "npm run build"
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "@types/mocha": "^5.2.7",
