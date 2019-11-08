@@ -45,3 +45,12 @@ const result = reader.readString();
 - short
 - int
 - byte
+
+### Next support types
+- long
+- decimal
+- date
+- time
+- ushort
+- uint
+- ulong
