@@ -34,6 +34,26 @@ describe('Tests common between BE & LE', () => {
 
         assert.equal(bufferHex, '0000');
     });
+
+    it('[BE/LE] Seek', () => {
+        const writer = new BinaryWriter();
+        writer.writeByte(200);
+        writer.seek(0);
+        writer.writeByte(100);
+
+        const result1 = writer.getBuffer();
+
+        assert.equal(result1.toString('hex'), '64');
+    });
+
+    it('[BE/LE] Get current offset', () => {
+        const reader = new BinaryWriter();
+
+        reader.writeByte(10);
+        reader.writeByte(20);
+
+        assert.equal(reader.offset, 2);
+    });
 });
 
 describe('Tests BE', () => {
