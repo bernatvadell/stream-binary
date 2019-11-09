@@ -1,9 +1,8 @@
 const BUFFER_CHUNK_LENGTH = 1024;
 
 export class BinaryWriter {
-    // private fieldBuffers: Uint8Array[] = [];
     private fieldOffset: number = 0;
-    private fieldBuffer: Buffer = Buffer.alloc(0);
+    private fieldBuffer: Buffer = Buffer.alloc(BUFFER_CHUNK_LENGTH);
     private fieldLength: number = 0;
 
     private writeInt16: (value: number, offset: number) => number;
