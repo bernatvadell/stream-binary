@@ -8,9 +8,10 @@
         "target": "es5",
         "sourceMap": true,
         "outDir": "./dist",
-        "baseUrl": "./"
+        "baseUrl": "./src"
     },
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "dist"
     ]
 }

@@ -45,10 +45,10 @@ const result = reader.readString();
 - short
 - int
 - byte
+- float
+- double
 
 ### Next support types
-- long
-- decimal
 - date
 - time
 - ushort

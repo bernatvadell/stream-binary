@@ -3,12 +3,16 @@ export class BinaryWriter {
 
     private writeInt16: (value: number, offset: number) => number;
     private writeInt32: (value: number, offset: number) => number;
+    private writeFloat16: (value: number, offset: number) => number;
+    private writeFloat32: (value: number, offset: number) => number;
 
     constructor(
         private littleEndian: boolean = false,
     ) {
         this.writeInt16 = (this.littleEndian ? Buffer.prototype.writeInt16LE : Buffer.prototype.writeInt16BE);
         this.writeInt32 = (this.littleEndian ? Buffer.prototype.writeInt32LE : Buffer.prototype.writeInt32BE);
+        this.writeFloat16 = (this.littleEndian ? Buffer.prototype.writeFloatLE : Buffer.prototype.writeFloatBE);
+        this.writeFloat32 = (this.littleEndian ? Buffer.prototype.writeDoubleLE : Buffer.prototype.writeDoubleBE);
     }
 
     public writeByte(byte: number) {
@@ -24,6 +28,18 @@ export class BinaryWriter {
     public writeInt(value: number) {
         const buffer = Buffer.alloc(4);
         this.writeInt32.call(buffer, value, 0);
+        this.fieldBuffers.push(buffer);
+    }
+
+    public writeFloat(value: number) {
+        const buffer = Buffer.alloc(4);
+        this.writeFloat16.call(buffer, value, 0);
+        this.fieldBuffers.push(buffer);
+    }
+
+    public writeDouble(value: number) {
+        const buffer = Buffer.alloc(8);
+        this.writeFloat32.call(buffer, value, 0);
         this.fieldBuffers.push(buffer);
     }
 

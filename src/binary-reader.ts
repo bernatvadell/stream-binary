@@ -3,6 +3,8 @@ export class BinaryReader {
 
     private readInt16: (offset: number) => number;
     private readInt32: (offset: number) => number;
+    private readFloat16: (value: number, offset: number) => number;
+    private readFloat32: (value: number, offset: number) => number;
 
     public get offset() {
         return this.fieldOffset;
@@ -14,6 +16,8 @@ export class BinaryReader {
     ) {
         this.readInt16 = (this.littleEndian ? Buffer.prototype.readInt16LE : Buffer.prototype.readInt16BE);
         this.readInt32 = (this.littleEndian ? Buffer.prototype.readInt32LE : Buffer.prototype.readInt32BE);
+        this.readFloat16 = (this.littleEndian ? Buffer.prototype.readFloatLE : Buffer.prototype.readFloatBE);
+        this.readFloat32 = (this.littleEndian ? Buffer.prototype.readDoubleLE : Buffer.prototype.readDoubleBE);
     }
 
     public seek(offset: number) {
@@ -33,6 +37,18 @@ export class BinaryReader {
     public readInt(): number {
         const value = this.readInt32.call(this.buffer, this.fieldOffset);
         this.fieldOffset += 4;
+        return value;
+    }
+
+    public readFloat(): number {
+        const value = this.readFloat16.call(this.buffer, this.fieldOffset);
+        this.fieldOffset += 4;
+        return value;
+    }
+
+    public readDouble(): number {
+        const value = this.readFloat32.call(this.buffer, this.fieldOffset);
+        this.fieldOffset += 8;
         return value;
     }
 

@@ -122,6 +122,24 @@ describe('Tests BE', () => {
         assert.equal(result1, 68457);
         assert.equal(result2, 80597);
     });
+
+    it('[BE] Read binary float', () => {
+        const buffer = Buffer.from('449a43f3', 'hex');
+        const reader = new BinaryReader(buffer);
+
+        const result = reader.readFloat();
+
+        assert.equal(result, 1234.1234130859375);
+    });
+
+    it('[BE] Read binary double', () => {
+        const buffer = Buffer.from('4049466666666666', 'hex');
+        const reader = new BinaryReader(buffer);
+
+        const result = reader.readDouble();
+
+        assert.equal(result, 50.55);
+    });
 });
 
 describe('Tests LE', () => {
@@ -183,5 +201,23 @@ describe('Tests LE', () => {
 
         assert.equal(result1, 587787454);
         assert.equal(result2, 537687354);
+    });
+
+    it('[LE] Read binary float', () => {
+        const buffer = Buffer.from('f3439a44', 'hex');
+        const reader = new BinaryReader(buffer, true);
+
+        const result = reader.readFloat();
+
+        assert.equal(result, 1234.1234130859375);
+    });
+
+    it('[LE] Read binary double', () => {
+        const buffer = Buffer.from('6666666666464940', 'hex');
+        const reader = new BinaryReader(buffer, true);
+
+        const result = reader.readDouble();
+
+        assert.equal(result, 50.55);
     });
 });

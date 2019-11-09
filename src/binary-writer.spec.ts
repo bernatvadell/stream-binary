@@ -105,6 +105,28 @@ describe('Tests BE', () => {
 
         assert.equal(bufferHex, '00010b6900013ad5');
     });
+
+    it('[BE] Write binary float', () => {
+        const writer = new BinaryWriter();
+
+        writer.writeFloat(1234.1234);
+
+        const buffer = writer.getBuffer();
+        const bufferHex = buffer.toString('hex');
+
+        assert.equal(bufferHex, '449a43f3');
+    });
+
+    it('[BE] Write binary double', () => {
+        const writer = new BinaryWriter();
+
+        writer.writeDouble(50.55);
+
+        const buffer = writer.getBuffer();
+        const bufferHex = buffer.toString('hex');
+
+        assert.equal(bufferHex, '4049466666666666');
+    });
 });
 
 describe('Tests LE', () => {
@@ -175,5 +197,27 @@ describe('Tests LE', () => {
         const bufferHex = buffer.toString('hex');
 
         assert.equal(bufferHex, '690b0100d53a0100');
+    });
+
+    it('[LE] Write binary float', () => {
+        const writer = new BinaryWriter(true);
+
+        writer.writeFloat(1234.1234);
+
+        const buffer = writer.getBuffer();
+        const bufferHex = buffer.toString('hex');
+
+        assert.equal(bufferHex, 'f3439a44');
+    });
+
+    it('[LE] Write binary double', () => {
+        const writer = new BinaryWriter(true);
+
+        writer.writeDouble(50.55);
+
+        const buffer = writer.getBuffer();
+        const bufferHex = buffer.toString('hex');
+
+        assert.equal(bufferHex, '6666666666464940');
     });
 });
