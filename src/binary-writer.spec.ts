@@ -54,6 +54,18 @@ describe('Tests common between BE & LE', () => {
 
         assert.equal(reader.offset, 2);
     });
+
+    it('[BE/LE] Write buffers', () => {
+        const writer = new BinaryWriter();
+
+        writer.writeBuffer(Buffer.from('ff', 'hex'));
+        writer.writeBuffer(Buffer.from('20', 'hex'));
+
+        const buffer = writer.getBuffer();
+
+        assert.equal(buffer.length, 6);
+        assert.equal(buffer.toString('hex'), '0001ff000120');
+    });
 });
 
 describe('Tests BE', () => {

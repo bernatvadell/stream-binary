@@ -58,4 +58,12 @@ export class BinaryReader {
         this.fieldOffset += size;
         return value;
     }
+
+    public readBuffer(): Buffer {
+        const size = this.readShort();
+        const buffer = Buffer.alloc(size);
+        this.buffer.copy(buffer, 0, this.fieldOffset, this.fieldOffset + size);
+        this.fieldOffset += size;
+        return buffer;
+    }
 }

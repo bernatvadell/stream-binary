@@ -68,6 +68,13 @@ export class BinaryWriter {
         }
     }
 
+    public writeBuffer(buffer: Buffer) {
+        this.alloc(buffer.length + 2);
+        this.writeShort(buffer.length);
+        buffer.copy(this.fieldBuffer, this.fieldOffset);
+        this.fieldOffset += buffer.length;
+    }
+
     public getBuffer(): Buffer {
         return this.fieldBuffer.slice(0, this.fieldLength);
     }

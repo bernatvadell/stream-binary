@@ -51,6 +51,17 @@ describe('Tests common between BE & LE', () => {
 
         assert.equal(reader.offset, 2);
     });
+
+    it('[BE/LE] Read buffers', () => {
+        const buffer = Buffer.from('0001ff000120', 'hex');
+        const reader = new BinaryReader(buffer);
+
+        const bufferA = reader.readBuffer();
+        const bufferB = reader.readBuffer();
+
+        assert.equal(bufferA.toString('hex'), 'ff');
+        assert.equal(bufferB.toString('hex'), '20');
+    });
 });
 
 describe('Tests BE', () => {

@@ -47,6 +47,7 @@ const result = reader.readString();
 - byte
 - float
 - double
+- buffer (set a two-byte prefix to know the size of the buffer.)
 
 ### Next support types
 - date
