@@ -14,6 +14,10 @@ export class BinaryWriter {
         return this.fieldOffset;
     }
 
+    public get length(): number {
+        return this.fieldLength;
+    }
+
     constructor(
         private littleEndian: boolean = false,
     ) {

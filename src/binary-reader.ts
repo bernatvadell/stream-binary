@@ -6,8 +6,12 @@ export class BinaryReader {
     private readFloat16: (value: number, offset: number) => number;
     private readFloat32: (value: number, offset: number) => number;
 
-    public get offset() {
+    public get offset(): number {
         return this.fieldOffset;
+    }
+
+    public get length(): number {
+        return this.buffer.byteLength;
     }
 
     constructor(
