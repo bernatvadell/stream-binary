@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer';
+
 export class BinaryReader {
     private fieldOffset: number = 0;
 

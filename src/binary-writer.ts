@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer';
+
 const BUFFER_CHUNK_LENGTH = 1024;
 
 export class BinaryWriter {
