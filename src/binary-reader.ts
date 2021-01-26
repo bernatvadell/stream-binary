@@ -34,6 +34,13 @@ export class BinaryReader {
         return this.buffer.subarray(this.fieldOffset++, this.fieldOffset)[0];
     }
 
+    public readBytes(count: number): Buffer {
+        const buffer = Buffer.alloc(count);
+        this.buffer.copy(buffer, 0, this.fieldOffset, this.fieldOffset + count);
+        this.fieldOffset += count;
+        return buffer;
+    }
+
     public readShort(): number {
         const value = this.readInt16.call(this.buffer, this.fieldOffset);
         this.fieldOffset += 2;
@@ -67,9 +74,6 @@ export class BinaryReader {
 
     public readBuffer(): Buffer {
         const size = this.readShort();
-        const buffer = Buffer.alloc(size);
-        this.buffer.copy(buffer, 0, this.fieldOffset, this.fieldOffset + size);
-        this.fieldOffset += size;
-        return buffer;
+        return this.readBytes(size);
     }
 }

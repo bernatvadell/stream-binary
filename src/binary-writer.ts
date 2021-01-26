@@ -39,6 +39,11 @@ export class BinaryWriter {
         this.fieldOffset++;
     }
 
+    public writeBytes(buffer: Buffer) {
+        buffer.copy(this.fieldBuffer, this.fieldOffset);
+        this.fieldOffset += buffer.length;
+    }
+
     public writeShort(value: number) {
         this.alloc(2);
         this.writeInt16.call(this.fieldBuffer, value, this.fieldOffset);
@@ -77,8 +82,7 @@ export class BinaryWriter {
     public writeBuffer(buffer: Buffer) {
         this.alloc(buffer.length + 2);
         this.writeShort(buffer.length);
-        buffer.copy(this.fieldBuffer, this.fieldOffset);
-        this.fieldOffset += buffer.length;
+        this.writeBytes(buffer);
     }
 
     public getBuffer(): Buffer {
